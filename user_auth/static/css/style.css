@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 1.5;
+}
+
+h1 {line-height: 1.1;}
+ 
+
+button, input {
+    outline: none;
+    border: none;
+}
+
+.main {
+    width: 100%;
+    height: 100vh;
+    background-color: #ccc;
+
+    position: relative;
+}
+
+.form_box {
+    width: 600px;
+    max-width: 85%;
+    height: auto;
+    margin: 0 auto;
+    padding: 9% 2%;
+    border-radius: 12px;
+    background-color: #F4EEE0;  /*  #212121 */
+    color: #f8f8f8;
+    box-shadow: 0 0 15px #2f2f2f78, 0 0 35px #19191982;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.form_box .container {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.form_box .container h1 {
+    font-size: 2rem;
+    letter-spacing: 1.5px;
+    color: #4ece7b;
+}
+
+.form_box form {
+    width: 75%;
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+.form_box form .details_inputs{margin-bottom: 20px;}
+
+.form_box form .details_inputs input {
+    display: block;
+    width: 100%;
+    background-color: transparent;
+    color: #4ece7b;
+    letter-spacing: 8px;
+    border: 2px solid #333;
+    border-radius: 10px;
+    padding: 12px 10px;
+    transition: .3s border;
+}
+
+.form_box form .details_inputs input:nth-child(2) {
+    margin: 15px auto;
+}
+
+.form_box form .details_inputs input:focus {
+    border: 2px solid #4ece7b;
+}
+
+.form_box .action input {
+    background-color: #4ece7b;
+    color: #f8f8f8;
+    font-weight: 600;
+    pad: 12px 40px;
+    border-radius: 8px;
+    cursor: pointer; 
+
+    transition-duration: .3s;
+    transition-property: background, color, border;
+}
+
+.form_box .action input:first-child {
+    padding: 13px 41px;
+    margin: 0 15px 15px 0;
+}
+
+.form_box .action input:first-child:hover {
+    background: #41925e;
+}
+
+.form_box .action input:last-child {
+    background-color: transparent;
+    color: #4ece7b;
+    border: 2px solid #4ece7b;
+}
+
+
+.form_box .action input:last-child:hover {
+    color: #f8f8f8;
+    border: 2px solid #f8f8f8;
+    background: #444;   
+}

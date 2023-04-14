@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Login</h1><br>
+  <form action="{% url 'user_auth:login' %}" method="post">
+    {% csrf_token %}
+    <div class="details_inputs">
+      <input type="text" id="username" name="username" placeholder="Username" autocomplete="off" required>
+      <input type="password" id="password" name="password" placeholder="Password" autocomplete="off" required>
+    </div> 
+    <div class="action">
+      <input type="submit" value="sign in">
+    </div>
+  </form>
+  <p style="color: #393646;">Don't have an account? <a style="color: #6D5D6E;" href="{% url 'user_auth:register' %}">Click here...</a></p>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Create Account</h1><br>
+  <form method="post">
+    {% csrf_token %}
+    <div class="details_inputs">
+      <input type="text" id="username" name="username" placeholder="Username" autocomplete="off" required>
+      <input type="email" id="email" name="email" placeholder="Email" autocomplete="off" required>
+      <div class="row">
+        <div class="col-sm-6">
+          <input type="password" id="password" name="password" placeholder="Password" autocomplete="off" required>
+        </div>
+        <div class="col-sm-6">
+          <input type="password" id="confirmpass" name="confirmpass" placeholder="Confirm Password" autocomplete="off" required>
+        </div>
+      </div>
+    </div> 
+    <div class="action">
+      <input type="submit" value="sign up">
+    </div>
+  </form>
+  <p style="color: #393646;">Already have an account? <a style="color: #6D5D6E;" href="{% url 'user_auth:login' %}">Click here...</a></p>
+{% endblock %}
