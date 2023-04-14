@@ -8,6 +8,20 @@ from .models import Note
 
 @login_required
 def home(request):
+    """
+    Renders the home page of the logged in user with their notes.
+
+    Parameters:
+    -----------
+    request: HttpRequest
+        The HTTP request object sent by the user.
+
+    Returns:
+    --------
+    render:
+        Returns an HTTP response with the rendered HTML page containing the notes of the user.
+    """
+    
     now = datetime.now() # get the current datetime
     username = request.user.username
     if request.method == 'POST':
@@ -20,24 +34,22 @@ def home(request):
     notes = Note.objects.filter(user=request.user)
     return render(request, 'index.html', {'notes': notes, 'now': now, 'username': username})
 
-@login_required 
-def update_note(request, note_id):
-    note = get_object_or_404(Note, pk=note_id)
-
-    if request.user != note.user:
-        return HttpResponseForbidden()
-
-    if request.method == 'POST':
-        note.title = request.POST['title']
-        note.content = request.POST['content']
-        note.save()
-        return redirect('minotes:home')
-
-    context = {'note': note}
-    return render(request, 'update_note.html', context)
-
 @login_required
 def delete_note(request, note_id):
+    """
+    Deletes a note belonging to the authenticated user.
+
+    Parameters:
+    request (HttpRequest): The request object used to generate this response.
+    note_id (int): The id of the note to delete.
+
+    Returns:
+    HttpResponseRedirect: Redirects to the homepage of the app.
+
+    Raises:
+    Http404: If the note does not exist or if the user does not have permission to delete the note.
+    """
+
     note = get_object_or_404(Note, pk=note_id, user=request.user)
     note.delete()
     messages.success(request, 'Note deleted successfully!')
@@ -45,6 +57,17 @@ def delete_note(request, note_id):
 
 @login_required
 def delete_all_notes(request):
+    """
+    Deletes all notes belonging to the authenticated user.
+
+    Parameters:
+    request (HttpRequest): The HTTP request object.
+
+    Returns:
+    HttpResponseRedirect: A redirect to the home page.
+
+    """
+
     user_notes = Note.objects.filter(user=request.user)
     user_notes.delete()
     messages.success(request, 'All notes deleted successfully!')

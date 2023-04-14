@@ -1,12 +1,18 @@
-from django.shortcuts import render
-
-# Create your views here.
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib.auth.models import User
 from django.contrib import messages
 
 def register(request):
+    """
+    This function registers a new user with the given credentials.
+
+    :param request: A HttpRequest object that contains the user's credentials
+    :type request: HttpRequest
+
+    :return: A redirect to the home page on successful registration or a render of the registration page on GET request
+    :rtype: HttpResponse
+    """
     if request.method == 'POST':
         username = request.POST['username']
         email = request.POST['email']
@@ -29,6 +35,15 @@ def register(request):
         return render(request, 'register.html')
 
 def login(request):
+    """
+    This function logs in the user with the given credentials.
+
+    :param request: A HttpRequest object that contains the user's credentials
+    :type request: HttpRequest
+
+    :return: A redirect to the home page on successful login or a render of the login page on GET request
+    :rtype: HttpResponse
+    """
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -43,5 +58,14 @@ def login(request):
         return render(request, 'login.html')
 
 def logout(request):
+    """
+    This function logs out the user.
+
+    :param request: A HttpRequest object that contains the user's credentials
+    :type request: HttpRequest
+
+    :return: A redirect to the home page
+    :rtype: HttpResponse
+    """
     auth_logout(request)
     return redirect('minotes:home')
